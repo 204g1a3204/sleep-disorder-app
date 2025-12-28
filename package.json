@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.1",
+    "express": "^5.2.1",
+    "python-shell": "^5.0.0",
+    "sqlite3": "^5.1.7"
+  }
+}

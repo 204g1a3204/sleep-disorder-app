@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classification of Sleep Disorders</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background-color: #050a14; color: white; line-height: 1.6; }
+        
+        nav { 
+            position: fixed; top: 0; width: 100%; display: flex; 
+            justify-content: space-between; align-items: center; 
+            padding: 20px 80px; background: rgba(5, 10, 20, 0.95); z-index: 1000; 
+        }
+        .logo { font-size: 1.2rem; font-weight: bold; text-transform: uppercase; }
+        .logo span { color: #f39c12; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-weight: bold; font-size: 0.85rem; }
+        .admin-btn { border: 2px solid #f39c12; padding: 5px 15px; border-radius: 5px; color: #f39c12 !important; }
+
+        .hero { 
+            height: 100vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=2060&auto=format&fit=crop');
+            background-size: cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; max-width: 800px; text-transform: uppercase; padding: 0 20px; }
+        .hero span { color: #f39c12; }
+
+        .about-section { padding: 100px 80px; background: #0b1120; display: flex; align-items: center; gap: 50px; justify-content: center; }
+        .about-image { flex: 0 0 380px; }
+        .about-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .about-text { flex: 1; max-width: 600px; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: #f39c12; }
+
+        /* Modal Styles */
+        .modal { 
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            background: white; color: #333; padding: 40px; border-radius: 10px; z-index: 2000; width: 400px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .modal h2 { margin-bottom: 20px; text-align: center; color: #050a14; }
+        .modal input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; display: block; }
+        .submit-btn { background: #f39c12; color: white; width: 100%; padding: 12px; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; border-radius: 5px; }
+        .submit-btn:hover { background: #e67e22; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1500; }
+        
+        .switch-text { text-align: center; margin-top: 15px; font-size: 0.9rem; }
+        .switch-text a { color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">CLASSIFICATION OF <span>SLEEP DISORDERS</span></div>
+        <div class="nav-links">
+            <a href="/">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="javascript:void(0)" onclick="openModal('regModal')">REGISTER</a>
+            <a href="javascript:void(0)" onclick="openModal('loginModal')">LOGIN</a>
+            <a href="/admin-login" class="admin-btn">ADMIN</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>AN ENSEMBLE LEARNING APPROACH FOR IMPROVED <span> SLEEP DISORDER PREDICTION</span></h1>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2070&auto=format&fit=crop" alt="Sleep Study">
+        </div>
+        <div class="about-text">
+            <h2>About</h2>
+        <div style="margin-bottom: 60px; color: #d1d1d1; font-size: 1.05rem; text-align: justify;">
+            <p style="margin-top: 10px; font-size: 0.95rem; color: #ccc;">
+                Our platform utilizes a <strong>Multi-Model Ensemble</strong> technique. By processing data through <strong>Artificial Neural Networks (ANN)</strong>, we simulate human-like pattern recognition to detect subtle irregularities in sleep cycles. Simultaneously, <strong>Random Forest</strong> and <strong>Support Vector Machines (SVM)</strong> handle high-dimensional physiological data to ensure that factors like blood pressure and stress levels are weighted accurately, reducing the margin of error significantly compared to traditional manual screening.
+            </p>
+        </div>
+        </div>
+    </section>
+
+    <div id="overlay" class="overlay" onclick="closeModals()"></div>
+
+    <div id="regModal" class="modal">
+    <h2>Register</h2>
+    <form id="regForm"></form>
+        <input type="text" name="name" placeholder="Full Name" required>
+        
+        <input type="email" name="email" placeholder="Email Address" required>
+        
+        <input type="tel" name="phone" placeholder="Phone Number (10 digits)" 
+               pattern="[0-9]{10}" title="Please enter exactly 10 digits" required>
+        
+        <input type="password" name="password" 
+               placeholder="Password (Min 8 chars, 1 Num, 1 Symbol)" 
+               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+               title="Must be at least 8 characters, include a letter, a number, and a symbol (@$!%*#?&)"
+               required>
+        
+        <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
+    </form>
+    <div class="switch-text">Already have an account? <a href="javascript:void(0)" onclick="switchModal('loginModal')">Login</a></div>
+</div>
+
+    <div id="loginModal" class="modal">
+        <h2>Login</h2>
+        <form id="loginForm"></form>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="submit-btn">LOG IN</button>
+        </form>
+        <div class="switch-text">New user? <a href="javascript:void(0)" onclick="switchModal('regModal')">Register</a></div>
+    </div>
+    <script>
+    // 1. మోడల్స్ ఓపెన్/క్లోజ్ అయ్యే పాత కోడ్ (దీన్ని అలాగే ఉంచండి)
+    function openModal(id) {
+        document.getElementById(id).style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+    function closeModals() {
+        document.getElementById('regModal').style.display = 'none';
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+    function switchModal(id) { 
+        closeModals(); 
+        setTimeout(() => openModal(id), 100); 
+    }
+
+    // 2. కొత్త కనెక్టివిటీ కోడ్ (ఇక్కడే మీ IP అడ్రస్ ఇవ్వాలి)
+    const SERVER_URL = "http://10.193.80.225:3000";
+
+    async function sendData(event, path) {
+        event.preventDefault(); // పేజీ రీలోడ్ అవ్వకుండా ఆపుతుంది
+        
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(SERVER_URL + path, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            
+            if (response.ok) {
+                alert(result.message || "Success!");
+                if(path === '/login') {
+                    // లాగిన్ సక్సెస్ అయితే ప్రెడిక్షన్ పేజీకి వెళ్లేలా
+                    window.location.href = "predict.html"; 
+                }
+                closeModals();
+            } else {
+                alert(result.error || "Something went wrong");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Server connect అవ్వలేదు. Laptop లో server రన్ అవుతుందో లేదో చూడండి!");
+        }
+    }
+
+    // ఫార్మ్ సబ్మిట్ చేసినప్పుడు ఈ ఫంక్షన్ రన్ అవుతుంది
+    document.querySelector('#regModal form').onsubmit = (e) => sendData(e, '/register');
+    document.querySelector('#loginModal form').onsubmit = (e) => sendData(e, '/login');
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "appId": "com.hospital.sleepapp",
+  "appName": "SleepDisorder",
+  "webDir": "www",
+  "bundledWebRuntime": false
+
+}

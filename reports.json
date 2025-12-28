@@ -1,0 +1,25 @@
+[
+  {
+    "email": "koushik@gmail.com",
+    "phone_number": "8978120039",
+    "age": "14",
+    "gender": "Male",
+    "occupation": "student",
+    "stress": "6",
+    "bp": "126/80",
+    "heart_rate": "67",
+    "sleep_duration": "8",
+    "tea_coffee": "2",
+    "bmi": "Underweight (Below 18.5)",
+    "snoring": "Sometimes",
+    "work_hours": "150",
+    "id": "1766826987970",
+    "result": "Healthy Sleep Pattern",
+    "riskLevel": "Low",
+    "recommendations": [
+      "Maintain your current routine.",
+      "Keep a consistent sleep schedule."
+    ],
+    "date": "27/12/2025"
+  }
+]
