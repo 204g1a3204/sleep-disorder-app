@@ -12,7 +12,7 @@ const fs = require('fs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 // This line allows the server to serve your index.html correctly
-app.use(express.static(__dirname)); 
+app.use(express.static(path.join(__dirname, 'www')));
 const USERS_DB = './database.json';
 const REPORTS_DB = './reports.json';
 
@@ -23,7 +23,7 @@ const readData = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeData = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'www', 'index.html'));
 });
 
 // --- AUTHENTICATION ---
@@ -595,6 +595,7 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`💻 Laptop: http://localhost:${PORT}`);
     console.log(`📱 Mobile: http://${MY_IP}:${PORT}`);
 });
+
 
 
 
