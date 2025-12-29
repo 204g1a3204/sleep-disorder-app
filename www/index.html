@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleep Disorder Classification</title>
+    <title>A1 Hospital - Sleep Analysis</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background-color: #050a14; color: white; }
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 40px; background: rgba(5, 10, 20, 0.95); z-index: 1000; }
-        .logo span { color: #f39c12; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; font-size: 0.8rem; }
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=2060&auto=format&fit=crop'); background-size: cover; }
-        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 10px; z-index: 2000; width: 90%; max-width: 400px; }
-        .modal input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-        .submit-btn { background: #f39c12; color: white; width: 100%; padding: 12px; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        body { font-family: 'Arial', sans-serif; background: #050a14; color: white; scroll-behavior: smooth; }
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; background: rgba(5, 10, 20, 0.9); z-index: 1000; }
+        .logo span { color: #f39c12; font-weight: bold; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: bold; }
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=2060'); background-size: cover; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero p { color: #f39c12; font-size: 1.2rem; }
+        .section { padding: 80px 50px; max-width: 1100px; margin: auto; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: #333; padding: 30px; border-radius: 12px; z-index: 2000; width: 90%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .modal input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .btn { background: #f39c12; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1500; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">SLEEP <span>DISORDERS</span></div>
+        <div class="logo">A1 <span>HOSPITAL</span></div>
         <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
             <a href="javascript:void(0)" onclick="openModal('regModal')">REGISTER</a>
             <a href="javascript:void(0)" onclick="openModal('loginModal')">LOGIN</a>
+            <a href="/admin-login" style="color:#f39c12;">ADMIN</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>AI-POWERED SLEEP ANALYSIS</h1>
+    <section class="hero" id="home">
+        <h1>Understand Your Sleep</h1>
+        <p>AI-Powered Disorder Classification & Clinical Advice</p><br>
+        <button class="btn" onclick="openModal('loginModal')">GET STARTED</button>
+    </section>
+
+    <section class="section" id="about">
+        <h2 style="color:#f39c12;">About Our System</h2><br>
+        <p style="line-height:1.6; color:#ccc;">A1 Hospital provides an advanced AI-driven platform to detect sleep disorders like Insomnia, Sleep Apnea, and Narcolepsy. By analyzing your physical parameters and lifestyle, we offer professional medical insights.</p>
     </section>
 
     <div id="overlay" class="overlay" onclick="closeModals()"></div>
@@ -37,24 +50,24 @@
         <h2>Register</h2>
         <form id="regForm">
             <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="tel" name="phone" placeholder="Phone (10 digits)" pattern="[0-9]{10}" required>
-            <input type="password" name="password" placeholder="Password (Min 8 chars)" required>
-            <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn" style="width:100%;">REGISTER</button>
         </form>
     </div>
 
     <div id="loginModal" class="modal">
         <h2>Login</h2>
         <form id="loginForm">
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email Address" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" class="submit-btn">LOG IN</button>
+            <button type="submit" class="btn" style="width:100%;">LOGIN</button>
         </form>
     </div>
 
     <script>
-        const SERVER_URL = "https://sleep-disorder-app-bklo.onrender.com"; // మీ Render URL
+        const SERVER_URL = "https://sleep-disorder-app-bklo.onrender.com";
 
         function openModal(id) {
             document.getElementById(id).style.display = 'block';
@@ -69,27 +82,19 @@
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
-
             try {
                 const response = await fetch(SERVER_URL + path, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     alert(result.message);
-                    if(path === '/login') {
-                        window.location.href = `${SERVER_URL}/dashboard?user=${encodeURIComponent(result.email)}`;
-                    }
+                    if(path === '/login') window.location.href = `${SERVER_URL}/dashboard?user=${encodeURIComponent(result.email)}`;
                     closeModals();
-                } else {
-                    alert(result.error);
-                }
-            } catch (err) {
-                alert("Server connection failed!");
-            }
+                } else { alert(result.error); }
+            } catch (err) { alert("Server connection failed!"); }
         }
 
         document.getElementById('regForm').onsubmit = (e) => handleForm(e, '/register');
