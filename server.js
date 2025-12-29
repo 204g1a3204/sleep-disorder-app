@@ -13,8 +13,8 @@ const fs = require('fs');
 app.use(bodyParser.urlencoded({ extended: true }));
 // This line allows the server to serve your index.html correctly
 app.use(express.static(path.join(__dirname, 'www')));
-const USERS_DB = './database.json';
-const REPORTS_DB = './reports.json';
+const USERS_DB = path.join(__dirname, 'www', 'database.json');
+const REPORTS_DB = path.join(__dirname, 'www', 'reports.json');
 
 if (!fs.existsSync(USERS_DB)) fs.writeFileSync(USERS_DB, JSON.stringify([]));
 if (!fs.existsSync(REPORTS_DB)) fs.writeFileSync(REPORTS_DB, JSON.stringify([]));
@@ -58,7 +58,7 @@ app.post('/register', async (req, res) => {
     users.push({ name, email, phone, password: hashedPassword });
     writeData(USERS_DB, users);
     
-    res.send('<h1>Registration Successful!</h1><a href="/">Login Now</a>');
+    res.json({ success: true, message: "Registration Successful!" });
 });
 
 app.post('/login', async (req, res) => {
@@ -70,7 +70,7 @@ app.post('/login', async (req, res) => {
         // We encode the URI to handle special characters in emails
         res.redirect(`/dashboard?user=${encodeURIComponent(email)}`);
     } else {
-        res.send('<h1>Invalid Credentials</h1><a href="/">Try Again</a>');
+        res.status(401).json({ success: false, message: "Invalid Credentials" });
     }
 });
 
@@ -595,6 +595,7 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`💻 Laptop: http://localhost:${PORT}`);
     console.log(`📱 Mobile: http://${MY_IP}:${PORT}`);
 });
+
 
 
 
