@@ -12,7 +12,7 @@ const fs = require('fs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 // This line allows the server to serve your index.html correctly
-app.use(express.static(path.join(__dirname))); 
+app.use(express.static(__dirname)); 
 const USERS_DB = './database.json';
 const REPORTS_DB = './reports.json';
 
@@ -595,6 +595,7 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`💻 Laptop: http://localhost:${PORT}`);
     console.log(`📱 Mobile: http://${MY_IP}:${PORT}`);
 });
+
 
 
 
